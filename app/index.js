@@ -1,5 +1,3 @@
-'use-strict'
-
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const express = require('express');
@@ -17,4 +15,8 @@ const PLAID_ENV = 'sandbox';
 const PLAID_PRODUCTS = 'auth,transactions,balance,identity';
 const PLAID_COUNTRY_CODES = 'US';
 
-const plaidClient = new plaid.Client(PLAID_CLIENT_ID, PLAID_SECRET, PLAID_PUBLIC_KEY, plaid.environments[PLAID_ENV], { version: '2019-05-29' });
+// Initialize client
+const plaidClient = new plaid.Client(PLAID_CLIENT_ID,
+                                     PLAID_SECRET,
+                                     PLAID_PUBLIC_KEY,
+                                     plaid.environments[PLAID_ENV]);
