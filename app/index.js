@@ -2,18 +2,19 @@
 
 const fs = require('fs');
 const bodyParser = require('body-parser');
-var express = require('express');
+const express = require('express');
 const plaid = require('plaid');
 
-var content = fs.readFileSync('../not_keys.json');
+const content = fs.readFileSync('../not_keys.json');
 const credentials = JSON.parse(content);
-console.log(credentials);
 
-var APP_PORT = 8000;
-var PLAID_CLIENT_ID = credentials.client_id;
-var PLAID_SECRET = credentials.sandbox_secret;
-var PLAID_PUBLIC_KEY = credentials.public_key;
-var PLAID_ENV = 'sandbox';
+const APP_PORT = 8000;
+const PLAID_CLIENT_ID = credentials.client_id;
+const PLAID_SECRET = credentials.sandbox_secret;
+const PLAID_PUBLIC_KEY = credentials.public_key;
+const PLAID_ENV = 'sandbox';
 
-var PLAID_PRODUCTS = 'auth,transactions,balance,identity';
-var PLAID_COUNTRY_CODES = 'US';//,CA,GB,FR,ES';
+const PLAID_PRODUCTS = 'auth,transactions,balance,identity';
+const PLAID_COUNTRY_CODES = 'US';
+
+const plaidClient = new plaid.Client(PLAID_CLIENT_ID, PLAID_SECRET, PLAID_PUBLIC_KEY, plaid.environments[PLAID_ENV], { version: '2019-05-29' });
