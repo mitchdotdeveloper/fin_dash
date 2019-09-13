@@ -27,7 +27,6 @@ const plaidClient = new plaid.Client(PLAID_CLIENT_ID,
 const app = express();
 app.use(express.static(__dirname + '/../public'));
 app.listen(APP_PORT);
-// app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({
   extended: false
 }));
