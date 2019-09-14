@@ -6,33 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fin Dash</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <form id='plaid-link-form'></form>
+    <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js" data-client-name="Fin_dash"
+            data-form-id="plaid-link-form" data-key="7bf1d2c9b6d6fd3df039a11ef9a29a" data-product="auth"
+            data-env="sandbox"></script>
+    <script src="./client.js"></script>
   </head>
   <body>
-  <form id='plaid-link-form'></form>
-  <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"
-          data-client-name="Fin_dash"
-          data-form-id="plaid-link-form"
-          data-key="7bf1d2c9b6d6fd3df039a11ef9a29a"
-          data-product="auth"
-          data-env="sandbox"></script>
   </body>
-  <script>
-    var handler;
-    (function ($) {
-      handler = Plaid.create({
-        clientName: 'Fin_dash',
-        env: 'sandbox',
-        product: 'transactions',
-        key: '7bf1d2c9b6d6fd3df039a11ef9a29a',
-        countryCodes: 'US'.split(','),
-        // webhook: 'https://your-domain.tld/plaid-webhook',
-        onSuccess: function (public_token) {
-          $.post('/get_access_token', {
-            public_token: public_token
-          });
-        }
-      });
-    })(jQuery);
-    handler.open();
-  </script>
 </html>
