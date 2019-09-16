@@ -1,43 +1,40 @@
 import React, { Component } from 'react';
-import PlaidLink from 'react-plaid-link';
+import ReactDOM from 'react-dom';
+import Link from './Link';
+import Dash from './Dash';
 
 class App extends Component {
   constructor (props) {
     super(props);
-    this.products = ['auth', 'transactions', 'identity'];
+    this.state = {
+      linkSucceeded: false
+    }
   }
 
-  componentDidMount() {
+  unmountLink () {
     var root = document.getElementById('root');
-    var linkBtn = root.firstChild.firstChild;
-    linkBtn.classList.add('link-btn');
-    linkBtn.id = 'link-btn';
-    linkBtn.removeAttribute('style');
-    linkBtn.innerHTML = 'Link to your bank';
-
-    root.removeChild(root.firstChild);
-    root.append(linkBtn);
-  }
-
-  sendToken (public_token) {
-    var httpRequest = new XMLHttpRequest()
-    httpRequest.open('POST', '/get_access_token')
-    httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-    httpRequest.send('public_token=' + encodeURIComponent(public_token))
+    while (root.nextSibling) {
+      root.nextSibling.remove();
+    }
+    this.setState({ linkSucceeded: true });
   }
 
   render () {
-    return (
-      <React.Fragment>
-        <PlaidLink
-          publicKey={this.props.public_key}
-          product={this.products}
-          env="sandbox"
-          clientName="Fin Dash"
-          onSuccess={this.sendToken.bind(this)}
-        />
-      </React.Fragment>
-    );
+    if (this.state.linkSucceeded) {
+      console.log('state dash');
+      return (
+        <>
+          <Dash />
+        </>
+      )
+    } else {
+      console.log('state link');
+      return (
+        <>
+          <Link public_key={this.props.public_key} unmountSelf={this.unmountLink.bind(this)} />
+        </>
+      );
+    }
   }
 }
 
