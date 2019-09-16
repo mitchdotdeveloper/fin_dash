@@ -7,6 +7,18 @@ class App extends Component {
     this.products = ['auth', 'transactions', 'identity'];
   }
 
+  componentDidMount() {
+    var root = document.getElementById('root');
+    var linkBtn = root.firstChild.firstChild;
+    linkBtn.classList.add('link-btn');
+    linkBtn.id = 'link-btn';
+    linkBtn.removeAttribute('style');
+    linkBtn.innerHTML = 'Link to your bank';
+
+    root.removeChild(root.firstChild);
+    root.append(linkBtn);
+  }
+
   sendToken (public_token) {
     var httpRequest = new XMLHttpRequest()
     httpRequest.open('POST', '/get_access_token')
