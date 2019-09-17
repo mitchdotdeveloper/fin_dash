@@ -33,10 +33,9 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // Accept the public_token sent from Link
-app.post('/get_access_token', function (request, response) {
+app.post('/get_access_token', (request, response) => {
   PUBLIC_TOKEN = request.body.public_token;
-  plaidClient.exchangePublicToken(PUBLIC_TOKEN, function (error,
-    tokenResponse) {
+  plaidClient.exchangePublicToken(PUBLIC_TOKEN, (error, tokenResponse) => {
     if (error != null) {
       console.log('Could not exchange public_token!\n' + error);
       return response.json({ error: error });
@@ -48,3 +47,14 @@ app.post('/get_access_token', function (request, response) {
     response.json({ 'error': null });
   });
 });
+
+// Send back balance information on account(s)
+app.post('/accounts/balance/get', (request, response) => {
+  plaidClient.getBalance(ACCESS_TOKEN, (err, result) => {
+    if (err != null) {
+      console.log('Could not get balance!\n' + err);
+      return response.json({ err: err });
+    }
+    return response.json({ accounts: result.accounts });
+  });
+})
