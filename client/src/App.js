@@ -21,14 +21,12 @@ class App extends Component {
 
   render () {
     if (this.state.linkSucceeded) {
-      console.log('state dash');
       return (
         <>
           <Dash />
         </>
       )
     } else {
-      console.log('state link');
       return (
         <>
           <Link public_key={this.props.public_key} unmountSelf={this.unmountLink.bind(this)} />
