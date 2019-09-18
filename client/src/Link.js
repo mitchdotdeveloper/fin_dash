@@ -4,10 +4,13 @@ import PlaidLink from 'react-plaid-link';
 class Link extends Component {
   constructor (props) {
     super(props);
+    this.state = {
+      linkIsOpen: true
+    }
     this.products = ['auth', 'transactions', 'identity'];
   }
 
-  sendToken (public_token) {
+  sendToken (public_token, metadata) {
     var request = new XMLHttpRequest()
     request.open('POST', '/get_access_token')
 
@@ -21,6 +24,14 @@ class Link extends Component {
     request.send('public_token=' + encodeURIComponent(public_token))
   }
 
+  handleExit (err, metadata) {
+    if (err != null) {
+      console.error(err.displayMessage);
+    } else {
+      this.setState({linkIsOpen: false});
+    }
+  }
+
   render () {
     return (
       <>
@@ -30,6 +41,7 @@ class Link extends Component {
           env='sandbox'
           clientName='Fin Dash'
           onSuccess={this.sendToken.bind(this)}
+          onExit={this.handleExit.bind(this)}
         />
       </>
     )
