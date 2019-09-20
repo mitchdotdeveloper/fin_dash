@@ -1,3 +1,41 @@
+// Possible endpoints
+
+// Link - /item/public_token/exchange
+//        /item/public_token/create
+// https://plaid.com/docs/#integrating-with-link
+
+// Item management - /accounts/get
+//                   /item/get
+//                   /item/webhook/update
+//                   /item/access_token/invalidate
+//                   /item/remove
+// https://plaid.com/docs/#accounts
+
+// Product access  - /auth/get
+//                   /transactions/get
+//                   /accounts/balance/get
+//                   /identity/get
+//                   /income/get
+//                   /asset_report/get
+//                   /asset_report/pdf/get
+//                   /investments/holdings/get
+//                   /investments/transactions/get
+// https://plaid.com/docs/#auth
+
+// Report management - /asset_report/create
+//                     / asset_report/remove
+//                     /asset_report/audit_copy/create
+//                     /asset_report/audit_copy/remove
+// https://plaid.com/docs/#asset-report-errors-and-warnings
+
+// Institutions - /institutions/get
+//                /institutions/get_by_id
+//                /institutions/search
+// https://plaid.com/docs/#institution-overview
+
+// Categories - /categories/get
+// https://plaid.com/docs/#category-overview
+
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const express = require('express');
@@ -57,4 +95,18 @@ app.post('/accounts/balance/get', (request, response) => {
     }
     return response.json({ accounts: result.accounts });
   });
-})
+});
+
+// Send back transactional information on account(s)
+app.post('/transactions/get', (request, response) => {
+  plaidClient.getTransactions(ACCESS_TOKEN, '2019-01-19', '2019-04-27', {
+    count: 10,
+    offset: 0
+  }, (err, result) => {
+    if (err != null) {
+      console.log('Could not get balance!\n' + err);
+      return response.json({ err: err });
+    }
+    return response.json({ data: result });
+  });
+});
