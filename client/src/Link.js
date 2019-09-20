@@ -7,8 +7,7 @@ class Link extends Component {
     this.state = {
       linkIsOpen: true
     }
-    this.products = ['auth', 'transactions', 'identity',
-                     'income', 'assets', 'investments', 'liabilities'];
+    this.products = ['auth', 'transactions'];
   }
 
   sendToken (public_token, metadata) {

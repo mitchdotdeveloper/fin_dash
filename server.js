@@ -70,6 +70,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+app.post('/', (request, response) => {
+  return response.json({ public_key: PLAID_PUBLIC_KEY });
+})
+
 // Accept the public_token sent from Link
 app.post('/get_access_token', (request, response) => {
   PUBLIC_TOKEN = request.body.public_token;
