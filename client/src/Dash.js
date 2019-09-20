@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Dash.css'
 
 class Dash extends Component {
   constructor (props) {
