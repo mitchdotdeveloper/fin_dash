@@ -57,4 +57,18 @@ app.post('/accounts/balance/get', (request, response) => {
     }
     return response.json({ accounts: result.accounts });
   });
-})
+});
+
+// Send back transactional information on account(s)
+app.post('/transactions/get', (request, response) => {
+  plaidClient.getTransactions(ACCESS_TOKEN, '2019-01-19', '2019-04-27', {
+    count: 10,
+    offset: 0
+  }, (err, result) => {
+    if (err != null) {
+      console.log('Could not get balance!\n' + err);
+      return response.json({ err: err });
+    }
+    return response.json({ data: result });
+  });
+});
