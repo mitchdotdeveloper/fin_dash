@@ -1,0 +1,12 @@
+.linkContent {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.link-btn {
+  font-size: 2em;
+  width: 100%;
+}

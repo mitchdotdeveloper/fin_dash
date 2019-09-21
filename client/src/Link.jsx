@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PlaidLink from 'react-plaid-link';
+import './Link.css';
 
 class Link extends Component {
   constructor (props) {
@@ -32,18 +33,24 @@ class Link extends Component {
     }
   }
 
+  openLink () {
+
+  }
+
   render () {
     return (
-      <>
+      <div className='linkContent'>
         <PlaidLink
+          className="link-btn"
           publicKey={this.props.public_key}
           product={this.products}
           env='sandbox'
           clientName='Fin Dash'
           onSuccess={this.sendToken.bind(this)}
-          onExit={this.handleExit.bind(this)}
-        />
-      </>
+          onExit={this.handleExit.bind(this)}>
+            Link to your account
+        </PlaidLink>
+      </div>
     )
   }
 }

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 // Get public key & render App component
-(function () {
+(() => {
   var request = new XMLHttpRequest();
   request.open('POST', '/');
   request.responseType = 'json';
