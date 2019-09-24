@@ -5,11 +5,28 @@ class Dash extends Component {
   constructor (props) {
     super(props);
     this.state = {
+      accounts: null,
       balance: null,
       transactions: []
     }
-    this.getBalances();
-    this.getTransactions();
+
+    this.getAccounts();
+  }
+
+  getAccounts() {
+    var request = new XMLHttpRequest();
+    request.open('POST', '/accounts/get');
+    request.responseType = 'json';
+
+    request.onreadystatechange = () => {
+      if (request.readyState === 4 && request.status === 200) {
+        console.log(request.response.accounts);
+        this.setState({ accounts: request.response.accounts });
+      }
+    };
+
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.send();
   }
 
   getBalances() {
