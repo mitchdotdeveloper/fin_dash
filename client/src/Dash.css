@@ -1,0 +1,55 @@
+.root__dashboard {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.dashboard__header {
+  font-size: 8em;
+}
+
+.dashboard__content--container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 600px;
+  max-width: 1100px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.694);
+}
+
+.dashboard__card--container {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  max-height: 90%;
+  width: 90%;
+  border-radius: 6px;
+  background-color: rgb(255, 255, 255);
+  overflow-y: auto;
+}
+
+.dashboard__card {
+  height: 270px;
+  width: 270px;
+  margin: 8px;
+  border-radius: 6px;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  text-align: center;
+}
+.dashboard__card:active {
+  transform: scale(.95);
+}
+
+.card__header--account {
+  font-size: 3.5em;
+}
+
+.card__data {
+  font-size: 2em;
+  color: rgb(126, 126, 126);
+}

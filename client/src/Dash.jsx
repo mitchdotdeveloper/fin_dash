@@ -61,12 +61,38 @@ class Dash extends Component {
     request.send();
   }
 
+  formatAccounts () {
+    return Object.keys( this.state.accounts ).map(account => {
+      return (
+        <div className="dashboard__card" key={account}>
+          <div className="card__header--account">Account Name</div>
+          <span className="card__data">{this.state.accounts[account].official_name || this.state.accounts[account].name}</span><br></br>
+          <div className="card__header--account">Account Type</div>
+          <span className="card__data">{this.state.accounts[account].type || 'Unavailable'}</span><br></br><br></br>
+        </div>
+      );
+    });
+  }
+
   render () {
-    return (
-      <>
-        <h1>Hey! {this.state.balance}</h1>
-      </>
-    );
+    if (!this.state.accounts) {
+      return (
+        <>
+          <h1>One Sec ...</h1>
+        </>
+      );
+    } else {
+      return (
+        <div className="root__dashboard">
+          <div className="dashboard__header">Your Accounts!</div>
+          <div className="dashboard__content--container">
+            <div className="dashboard__card--container">
+              {this.formatAccounts()}
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 }
 
