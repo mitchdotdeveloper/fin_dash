@@ -2,11 +2,21 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   height: 100vh;
 }
 
+.linkContent__header {
+  font-size: 8em;
+}
+
 .link-btn {
-  font-size: 2em;
+  font-size: 4em;
   width: 100%;
+  box-shadow: 0 4px rgb(241, 241, 241);
+}
+
+.link-btn:active {
+  box-shadow: 0 0;
+  transform: translateY(4px);
 }

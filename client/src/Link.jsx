@@ -40,6 +40,7 @@ class Link extends Component {
   render () {
     return (
       <div className='linkContent'>
+        <h1 className="linkContent__header">Link your account</h1>
         <PlaidLink
           className="link-btn"
           publicKey={this.props.public_key}
@@ -48,7 +49,7 @@ class Link extends Component {
           clientName='Fin Dash'
           onSuccess={this.sendToken.bind(this)}
           onExit={this.handleExit.bind(this)}>
-            Link to your account
+            Link
         </PlaidLink>
       </div>
     )
