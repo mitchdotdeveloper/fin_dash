@@ -1,4 +1,4 @@
 node_modules/
 .gitsecret/keys/random_seed
-not_keys.json
+not_keys*
 !*.secret
