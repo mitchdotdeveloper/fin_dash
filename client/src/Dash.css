@@ -2,8 +2,9 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  justify-content: center;
-  height: 100%;
+  justify-content: space-evenly;
+  height: 100vh;
+  /* display: none; */
 }
 
 .dashboard__header {
@@ -93,26 +94,34 @@
   justify-content: space-evenly;
   height: 100%;
   width: 100%;
-  overflow-y: auto;
 }
 
 .content__account {
-  color: white;
-  background-color: black;
+  height: 80%;
+  width: 90%;
+  background-color: rgb(182, 182, 182);
+  padding: 8px;
+  border-radius: 6px;
+  overflow-y: auto;
 }
 
 .account__accountName, .account__header--balance {
+  text-align: center;
   font-size: 3.5em;
 }
 
 .account__cardNumber, .account__type, .account__balanceAvailable,
 .account__currentBalance, .account__balanceLimit {
+  margin: 0 25px;
   font-size: 1.5em;
 }
 
 .modal__background--overlay {
   position: absolute;
-  background-color: rgba(159, 159, 159, 0.906);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.37);
   height: 100%;
   width: 100%;
 }
