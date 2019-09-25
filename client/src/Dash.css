@@ -58,8 +58,10 @@
 
 .card__modal--container {
   position: absolute;
+  z-index: 2;
   display: flex;
   flex-flow: column nowrap;
+  justify-content: center;
   height: 80%;
   width: 60%;
   top: 50%;
@@ -67,31 +69,7 @@
   transform: translate(-50%, -50%);
   padding-bottom: 4px;
   border-radius: 6px;
-  background-color: teal;
-}
-
-.modal__nav--container {
-  min-height: 10%;
-}
-
-.modal__nav--list {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 0;
-}
-
-.nav__list--item {
-  list-style: none;
-  font-size: 3em;
-  padding: 2px;
-  border-radius: 6px;
-  background-color: wheat;
-}
-
-.nav__list--item:active {
-  transform: scale(.95);
+  background-color: rgba(255, 255, 255, 0.694);
 }
 
 .modal__content--container {
@@ -104,7 +82,7 @@
   width: 90%;
   padding: 10px 2px;
   border-radius: 6px;
-  background-color: rgb(162, 30, 30);
+  background-color: rgb(255, 255, 255);
 }
 
 .modal__content {
@@ -118,10 +96,23 @@
   overflow-y: auto;
 }
 
+.content__account {
+  color: white;
+  background-color: black;
+}
+
+.account__accountName, .account__header--balance {
+  font-size: 3.5em;
+}
+
+.account__cardNumber, .account__type, .account__balanceAvailable,
+.account__currentBalance, .account__balanceLimit {
+  font-size: 1.5em;
+}
+
 .modal__background--overlay {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.486);
+  background-color: rgba(159, 159, 159, 0.906);
   height: 100%;
   width: 100%;
-  z-index: -1;
 }
