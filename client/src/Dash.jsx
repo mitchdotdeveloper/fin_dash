@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Dash.css'
-// import { Account, Accounts } from './Account';
-import Accounts from './Account';
+import { Accounts, Account } from './Account';
+// import Accounts from './Account';
 
 class Dash extends Component {
   constructor (props) {
@@ -10,7 +10,7 @@ class Dash extends Component {
       accounts: null,
       balance: null,
       transactions: null,
-      accountClicked: null,
+      accountSelected: null,
       balanceClicked: false,
       transactionClicked: false
     }
@@ -63,25 +63,11 @@ class Dash extends Component {
   }
 
   handleAccountClicked (account) {
-    this.setState( {accountClicked: account} );
-  }
-
-  _renderAccount (account) {
-    return (
-      <div className="content__account" key={account.account_id}>
-        <div className="account__accountName">{account.official_name}</div>
-        <div className="account__cardNumber">******* {account.mask}</div>
-        <div className="account__type">Type: {account.type}</div>
-        <div className="account__header--balance">Balance</div>
-        <div className="account__balanceAvailable">Available: {account.balances.available || '*'}</div>
-        <div className="account__currentBalance">Current: {account.balances.current || '*'}</div>
-        <div className="account__balanceLimit">Limit: {account.balances.limit || '*'}</div>
-      </div>
-    );
+    this.setState( {accountSelected: account} );
   }
 
   render () {
-    if (this.state.accountClicked) {
+    if (this.state.accountSelected) {
       return (
         <>
           <div className="card__modal--container">
@@ -92,7 +78,7 @@ class Dash extends Component {
               </ul>
             </div>
             <div className="modal__content--container">
-              <div className="modal__content">{this._renderAccount(this.state.accountClicked)}</div>
+              <div className="modal__content"><Account account={this.state.accountSelected}/></div>
             </div>
           </div>
           <div className="modal__background--overlay"></div>
