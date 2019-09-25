@@ -8,6 +8,12 @@ class App extends Component {
     this.state = {
       linkSucceeded: false
     }
+    this.item = null;
+  }
+
+  updateItem (item) {
+    // this.setState( {item: JSON.parse(item).item} );
+    this.item = JSON.parse(item).item;
   }
 
   unmountLink () {
@@ -19,16 +25,16 @@ class App extends Component {
   }
 
   render () {
-    if (this.state.linkSucceeded) {
+    if (this.state.linkSucceeded && this.item) {
       return (
         <>
-          <Dash />
+          <Dash available_products={this.item.available_products}/>
         </>
       );
     } else {
       return (
         <>
-          <Link public_key={this.props.public_key} unmountSelf={this.unmountLink.bind(this)} />
+          <Link public_key={this.props.public_key} unmountSelf={this.unmountLink.bind(this)} update_item={this.updateItem.bind(this)} />
         </>
       );
     }

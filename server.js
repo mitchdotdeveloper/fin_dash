@@ -88,6 +88,18 @@ app.post('/get_access_token', (request, response) => {
   });
 });
 
+// Send back item information
+app.post('/item/get', (request, response) => {
+  plaidClient.getItem(ACCESS_TOKEN, (err, result) => {
+    if (err != null) {
+      console.log('Could not retrieve item!\n' + err);
+      return response.json({err: err });
+    }
+
+    return response.json({ item: result.item });
+  });
+});
+
 // Send back account information
 app.post('/accounts/get', (request, response) => {
   plaidClient.getAccounts(ACCESS_TOKEN, (err, result) => {
