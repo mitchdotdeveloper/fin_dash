@@ -38,13 +38,17 @@ export const Account = ({account, accountClosed}) => {
           <div className="modal__content--container">
             <div className="modal__content">
               <div className="content__account" key={account.account_id}>
-                <div className="account__accountName">{account.official_name || account.name}</div>
-                <div className="account__cardNumber">******* {account.mask}</div>
-                <div className="account__type">Type: {account.type}</div>
-                <div className="account__header--balance">Balance</div>
-                <div className="account__balanceAvailable">Available: {account.balances.available || '*'}</div>
-                <div className="account__currentBalance">Current: {account.balances.current || '*'}</div>
-                <div className="account__balanceLimit">Limit: {account.balances.limit || '*'}</div>
+                <div className="account__container">
+                  <div className="account__accountName">{account.official_name || account.name}</div>
+                  <span className="account__cardNumber">******* {account.mask}</span>
+                  <span className="account__type">Type: {account.type}</span>
+                </div>
+                <div className="balance__container">
+                  <div className="account__header--balance">Balance</div>
+                  <span className="account__balanceAvailable">Available: {account.balances.available || '*'}</span>
+                  <span className="account__currentBalance">Current: {account.balances.current || '*'}</span>
+                  <span className="account__balanceLimit">Limit: {account.balances.limit || '*'}</span>
+                </div>
               </div>
             </div>
           </div>
