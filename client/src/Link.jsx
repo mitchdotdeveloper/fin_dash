@@ -12,17 +12,34 @@ class Link extends Component {
   }
 
   sendToken (public_token, metadata) {
-    var request = new XMLHttpRequest()
-    request.open('POST', '/get_access_token')
+    var request = new XMLHttpRequest();
+    request.open('POST', '/get_access_token');
 
     request.onreadystatechange = () => {
       if (request.readyState === 4 && request.status === 200) {
+        // this.props.unmountSelf();
+        this.getItems();
+      }
+    }
+
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    request.send('public_token=' + encodeURIComponent(public_token));
+  }
+
+  getItems () {
+    var request = new XMLHttpRequest();
+    request.open('POST', '/item/get');
+
+    request.onreadystatechange = () => {
+      if (request.readyState === 4 && request.status === 200) {
+        console.log(request.response);
+        this.props.update_item(request.response);
         this.props.unmountSelf();
       }
     }
 
-    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-    request.send('public_token=' + encodeURIComponent(public_token))
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    request.send();
   }
 
   handleExit (err, metadata) {
@@ -31,10 +48,6 @@ class Link extends Component {
     } else {
       this.setState({linkIsOpen: false});
     }
-  }
-
-  openLink () {
-
   }
 
   render () {
