@@ -58,8 +58,10 @@
 
 .card__modal--container {
   position: absolute;
+  z-index: 2;
   display: flex;
   flex-flow: column nowrap;
+  justify-content: center;
   height: 80%;
   width: 60%;
   top: 50%;
@@ -68,33 +70,6 @@
   padding-bottom: 4px;
   border-radius: 6px;
   background-color: rgba(255, 255, 255, 0.694);
-}
-
-.modal__nav--container {
-  min-height: 10%;
-}
-
-.modal__nav--list {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 0;
-}
-
-.nav__list--item {
-  list-style: none;
-  font-size: 3em;
-  padding: 2px;
-  border-radius: 6px;
-  background-color: white;
-  border: 2px solid rgb(241, 241, 241);
-  box-shadow: 0 4px rgb(241, 241, 241);
-}
-
-.nav__list--item:active {
-  box-shadow: 0 0;
-  transform: translateY(4px);
 }
 
 .modal__content--container {
@@ -135,10 +110,9 @@
   font-size: 1.5em;
 }
 
-/* .modal__background--overlay {
+.modal__background--overlay {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.486);
+  background-color: rgba(159, 159, 159, 0.906);
   height: 100%;
   width: 100%;
-  z-index: -1;
-} */
+}

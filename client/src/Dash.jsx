@@ -62,57 +62,17 @@ class Dash extends Component {
     request.send();
   }
 
-  handleAccountClicked (account) {
+  handleAccountState (account) {
     this.setState( {accountSelected: account} );
   }
 
   render () {
-    if (this.state.accountSelected) {
-      return (
-        <>
-          <div className="card__modal--container">
-            <div className="modal__nav--container">
-              <ul className="modal__nav--list">
-                <li className="nav__list--item" onClick={() => this.setState({ balanceClicked: true })}>Balance</li>
-                <li className="nav__list--item" onClick={() => this.setState({ transactionClicked: true })}>Transactions</li>
-              </ul>
-            </div>
-            <div className="modal__content--container">
-              <div className="modal__content"><Account account={this.state.accountSelected}/></div>
-            </div>
-          </div>
-          <div className="modal__background--overlay"></div>
-        </>
-      );
-    } else if (this.state.accounts) {
-      return (
-        <div className="root__dashboard">
-          <div className="dashboard__header">Your Accounts</div>
-          <div className="dashboard__content--container">
-            <div className="dashboard__card--container">
-              <Accounts accounts={this.state.accounts} accountClicked={this.handleAccountClicked.bind(this)}/>
-            </div>
-          </div>
-        </div>
-      );
-    } else if (!this.state.accounts || !this.state.balance || !this.state.transactions) {
-      return (
-        <>
-          <h1>One Sec ...</h1>
-        </>
-      );
-    }
-    // else if (this.state.balance) {
-    //   return (
-    //     <>
-    //     </>
-    //   );
-    // } else if (this.state.transactions) {
-    //   return (
-    //     <>
-    //     </>
-    //   );
-    // }
+    return (
+      <>
+        <Account account={this.state.accountSelected} accountClosed={this.handleAccountState.bind(this)}/>
+        <Accounts accounts={this.state.accounts} accountClicked={this.handleAccountState.bind(this)} />
+      </>
+    );
   }
 }
 
