@@ -58,7 +58,7 @@ let ACCESS_TOKEN = '';
 
 // Initialize client
 const plaidClient = new plaid.Client(PLAID_CLIENT_ID, PLAID_SECRET,
-                                     PLAID_PUBLIC_KEY, plaid.environments[PLAID_ENV]);
+  PLAID_PUBLIC_KEY, plaid.environments[PLAID_ENV]);
 
 const app = express();
 app.use(express.static(__dirname + '/client/public'));
@@ -93,7 +93,7 @@ app.post('/item/get', (request, response) => {
   plaidClient.getItem(ACCESS_TOKEN, (err, result) => {
     if (err != null) {
       console.log('Could not retrieve item!\n' + err);
-      return response.json({err: err });
+      return response.json({ err: err });
     }
 
     return response.json({ item: result.item });

@@ -3,7 +3,7 @@ import Link from './Link';
 import Dash from './Dash';
 
 class App extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       linkSucceeded: false
@@ -11,12 +11,12 @@ class App extends Component {
     this.item = null;
   }
 
-  updateItem (item) {
+  updateItem(item) {
     // this.setState( {item: JSON.parse(item).item} );
     this.item = JSON.parse(item).item;
   }
 
-  unmountLink () {
+  unmountLink() {
     var root = document.getElementById('root');
     while (root.nextSibling) {
       root.nextSibling.remove();
@@ -24,11 +24,11 @@ class App extends Component {
     this.setState({ linkSucceeded: true });
   }
 
-  render () {
+  render() {
     if (this.state.linkSucceeded && this.item) {
       return (
         <>
-          <Dash available_products={this.item.available_products}/>
+          <Dash available_products={this.item.available_products} />
         </>
       );
     } else {
@@ -40,5 +40,4 @@ class App extends Component {
     }
   }
 }
-
 export default App;
