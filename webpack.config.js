@@ -4,12 +4,13 @@ const srcPath = path.resolve(__dirname, 'client');
 const publicPath = path.resolve(__dirname, 'server/public');
 
 module.exports = {
+  entry: './client/index.jsx',
+  output: {
+    path: publicPath,
+    filename: 'main.js'
+  },
   resolve: {
     extensions: ['.js', '.jsx']
-  },
-  entry: './client',
-  output: {
-    path: publicPath
   },
   module: {
     rules: [
@@ -24,18 +25,18 @@ module.exports = {
             ]
           }
         }
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
-  devtool: 'source-map',
   devServer: {
-    host: '0.0.0.0',
-    port: 3000,
-    contentBase: publicPath,
+    host: 'localhost',
+    port: 8080,
+    contentBase: srcPath,
     watchContentBase: true,
-    stats: 'minimal',
-    proxy: {
-      '/api': 'http://localhost:3001'
-    }
+    stats: 'minimal'
   }
 };

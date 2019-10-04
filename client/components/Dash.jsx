@@ -1,7 +1,6 @@
-mport React, { Component } from 'react';
-import './Dash.css'
+import React, { Component } from 'react';
+import './styles/dash.css';
 import { Accounts, Account } from './Account';
-// import Accounts from './Account';
 
 class Dash extends Component {
   constructor(props) {

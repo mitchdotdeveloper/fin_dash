@@ -14,7 +14,7 @@
 // Product access  - /auth/get
 //                   /transactions/get
 //                   /accounts/balance/get
-//                   /identity/get
+//                   /identity/getsf
 //                   /income/get
 //                   /asset_report/get
 //                   /asset_report/pdf/get
@@ -41,7 +41,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const plaid = require('plaid');
 
-const content = fs.readFileSync('./not_keys.json');
+const content = fs.readFileSync('not_keys.json');
 const credentials = JSON.parse(content);
 
 const APP_PORT = 8000;
@@ -61,7 +61,7 @@ const plaidClient = new plaid.Client(PLAID_CLIENT_ID, PLAID_SECRET,
   PLAID_PUBLIC_KEY, plaid.environments[PLAID_ENV]);
 
 const app = express();
-app.use(express.static(__dirname + '/client/public'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({
   extended: false
 }));

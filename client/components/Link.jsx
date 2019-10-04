@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PlaidLink from 'react-plaid-link';
-import './Link.css';
+import './styles/link.css';
 
 class Link extends Component {
   constructor(props) {
