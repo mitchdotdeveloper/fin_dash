@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import './Dash.css'
+import './styles/dash.css';
 import { Accounts, Account } from './Account';
-// import Accounts from './Account';
 
 class Dash extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       accounts: null,
@@ -39,7 +38,7 @@ class Dash extends Component {
 
     request.onreadystatechange = () => {
       if (request.readyState === 4 && request.status === 200) {
-        this.setState({balance: request.response.accounts[0].balances.current});
+        this.setState({ balance: request.response.accounts[0].balances.current });
       }
     };
 
@@ -62,18 +61,17 @@ class Dash extends Component {
     request.send();
   }
 
-  handleAccountState (account) {
-    this.setState( {accountSelected: account} );
+  handleAccountState(account) {
+    this.setState({ accountSelected: account });
   }
 
-  render () {
+  render() {
     return (
       <>
-        <Account account={this.state.accountSelected} accountClosed={this.handleAccountState.bind(this)}/>
+        <Account account={this.state.accountSelected} accountClosed={this.handleAccountState.bind(this)} />
         <Accounts accounts={this.state.accounts} accountClicked={this.handleAccountState.bind(this)} />
       </>
     );
   }
 }
-
 export default Dash;

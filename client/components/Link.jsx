@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PlaidLink from 'react-plaid-link';
-import './Link.css';
+import './styles/link.css';
 
 class Link extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       linkIsOpen: true
@@ -11,7 +11,7 @@ class Link extends Component {
     this.products = ['auth', 'transactions'];
   }
 
-  sendToken (public_token, metadata) {
+  sendToken(public_token, metadata) {
     var request = new XMLHttpRequest();
     request.open('POST', '/get_access_token');
 
@@ -26,7 +26,7 @@ class Link extends Component {
     request.send('public_token=' + encodeURIComponent(public_token));
   }
 
-  getItems () {
+  getItems() {
     var request = new XMLHttpRequest();
     request.open('POST', '/item/get');
 
@@ -42,15 +42,15 @@ class Link extends Component {
     request.send();
   }
 
-  handleExit (err, metadata) {
+  handleExit(err, metadata) {
     if (err != null) {
       console.error(err.displayMessage);
     } else {
-      this.setState({linkIsOpen: false});
+      this.setState({ linkIsOpen: false });
     }
   }
 
-  render () {
+  render() {
     return (
       <div className='linkContent'>
         <h1 className="linkContent__header">Link your account</h1>
@@ -62,7 +62,7 @@ class Link extends Component {
           clientName='Fin Dash'
           onSuccess={this.sendToken.bind(this)}
           onExit={this.handleExit.bind(this)}>
-            Link
+          Link
         </PlaidLink>
       </div>
     )

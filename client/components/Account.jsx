@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Accounts = ({accounts, accountClicked}) => {
+export const Accounts = ({ accounts, accountClicked }) => {
   if (accounts) {
     return (
       <div className="root__dashboard">
@@ -10,14 +10,14 @@ export const Accounts = ({accounts, accountClicked}) => {
             {Object.keys(accounts).map(
               account => {
                 return (
-                <div className="dashboard__card" key={account} onClick={() => accountClicked(accounts[account])}>
-                  <div className="card__header--accountName">
-                    {accounts[account].name || accounts[account].official_name}
+                  <div className="dashboard__card" key={account} onClick={() => accountClicked(accounts[account])}>
+                    <div className="card__header--accountName">
+                      {accounts[account].name || accounts[account].official_name}
+                    </div>
+                    <span className="card__data--cardNumber">
+                      ******* {accounts[account].mask}
+                    </span><br></br>
                   </div>
-                  <span className="card__data--cardNumber">
-                    ******* {accounts[account].mask}
-                  </span><br></br>
-                </div>
                 );
               }
             )}
@@ -30,7 +30,7 @@ export const Accounts = ({accounts, accountClicked}) => {
   }
 };
 
-export const Account = ({account, accountClosed}) => {
+export const Account = ({ account, accountClosed }) => {
   if (account) {
     return (
       <>
