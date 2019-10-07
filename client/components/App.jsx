@@ -13,7 +13,7 @@ class App extends Component {
 
   updateItem(item) {
     // this.setState( {item: JSON.parse(item).item} );
-    this.item = JSON.parse(item).item;
+    this.item = item.item;
   }
 
   unmountLink() {

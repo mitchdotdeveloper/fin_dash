@@ -97,7 +97,6 @@ app.post('/item/get', (request, response) => {
       console.log('Could not retrieve item!\n' + err);
       return response.json({ err: err });
     }
-
     return response.json({ item: result.item });
   });
 });

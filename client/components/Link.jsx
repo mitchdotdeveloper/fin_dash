@@ -12,34 +12,31 @@ class Link extends Component {
   }
 
   sendToken(public_token, metadata) {
-    var request = new XMLHttpRequest();
-    request.open('POST', '/get_access_token');
-
-    request.onreadystatechange = () => {
-      if (request.readyState === 4 && request.status === 200) {
-        // this.props.unmountSelf();
-        this.getItems();
-      }
-    }
-
-    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    request.send('public_token=' + encodeURIComponent(public_token));
+    fetch('/get_access_token', {
+      method: 'POST',
+      headers: { 'Content-Type' : 'application/json' },
+      body: JSON.stringify({public_token:public_token})
+    })
+    .then(res => res.ok ? res.json() : Promise.reject(`Error: Returned with ${res.status}`))
+    .then(data => data.err ? Promise.reject(`Error: ${data.error_message}`) : this.getItems())
+    .catch(err => console.error(err));
   }
 
   getItems() {
-    var request = new XMLHttpRequest();
-    request.open('POST', '/item/get');
-
-    request.onreadystatechange = () => {
-      if (request.readyState === 4 && request.status === 200) {
-        console.log(request.response);
-        this.props.update_item(request.response);
+    fetch('/item/get', {
+      method: 'POST',
+      headers: { 'Content-Type' : 'application/json' }
+    })
+    .then(res => res.ok ? res.json() : Promise.reject(`Error: Returned with ${res.status}`))
+    .then(data => {
+      if ( data.err ) {
+        Promise.reject(`Error ${data.error_message}`);
+      } else {
+        this.props.update_item(data);
         this.props.unmountSelf();
       }
-    }
-
-    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    request.send();
+    })
+    .catch(err => console.log(err));
   }
 
   handleExit(err, metadata) {

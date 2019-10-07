@@ -17,48 +17,33 @@ class Dash extends Component {
   }
 
   getAccounts() {
-    var request = new XMLHttpRequest();
-    request.open('POST', '/accounts/get');
-    request.responseType = 'json';
-
-    request.onreadystatechange = () => {
-      if (request.readyState === 4 && request.status === 200) {
-        this.setState({ accounts: request.response.accounts });
-      }
-    };
-
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.send();
+    fetch('/accounts/get', {
+      method: 'POST',
+      headers: { 'Content-Type' : 'application/json' }
+    })
+    .then(res => res.ok ? res.json() : Promise.reject(`Error: Returned with ${res.status}`))
+    .then(data => this.setState({ accounts: data.accounts }))
+    .catch(err => console.error(err));
   }
 
   getBalances() {
-    var request = new XMLHttpRequest();
-    request.open('POST', '/accounts/balance/get');
-    request.responseType = 'json';
-
-    request.onreadystatechange = () => {
-      if (request.readyState === 4 && request.status === 200) {
-        this.setState({ balance: request.response.accounts[0].balances.current });
-      }
-    };
-
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.send();
+    fetch('/accounts/balance/get', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => res.ok ? res.json() : Promise.reject(`Error: Returned with ${res.status}`))
+    .then(data => this.setState({ balance: data.accounts[0].balances.current }))
+    .catch(err => console.error(err));
   }
 
   getTransactions() {
-    var request = new XMLHttpRequest();
-    request.open('POST', '/transactions/get');
-    request.responseType = 'json';
-
-    request.onreadystatechange = () => {
-      if (request.readyState === 4 && request.status === 200) {
-        this.setState({ transactions: request.response.data.transactions });
-      }
-    };
-
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.send();
+    fetch('/transactions/get', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => res.ok ? res.json() : Promise.reject(`Error: Returned with ${res.status}`))
+    .then(data => this.setState({ transactions: data.data.transactions }))
+    .catch(err => console.error(err));
   }
 
   handleAccountState(account) {
