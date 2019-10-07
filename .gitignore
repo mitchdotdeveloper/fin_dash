@@ -2,3 +2,4 @@ node_modules
 .gitsecret/keys/random_seed
 not_keys.json
 !*.secret
+mysql_credentials.js

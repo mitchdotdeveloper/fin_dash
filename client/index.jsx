@@ -4,14 +4,11 @@ import App from './components/App';
 
 // Get public key & render App component
 (() => {
-  var request = new XMLHttpRequest();
-  request.open('POST', '/');
-  request.responseType = 'json';
-  request.onreadystatechange = () => {
-    if (request.readyState === 4 && request.status === 200) {
-      ReactDOM.render(<App public_key={request.response.public_key} />, document.getElementById('root'));
-    }
-  };
-  request.setRequestHeader('Content-Type', 'application/json');
-  request.send();
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' }
+  })
+    .then(res => res.ok ? res.json() : Promise.reject(`Error: Returned with ${res.status}`))
+    .then(data => ReactDOM.render(<App public_key={data.public_key} />, document.getElementById('root')))
+    .catch(err => console.error(err));
 })();
