@@ -36,22 +36,24 @@
 // Categories - /categories/get
 // https://plaid.com/docs/#category-overview
 
+// const PLAID_PRODUCTS = 'auth,transactions,balance,identity';
+// const PLAID_COUNTRY_CODES = 'US';
+
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const express = require('express');
 const plaid = require('plaid');
 
+const connection = require('./mysql_credentials');
+
 const content = fs.readFileSync('not_keys.json');
 const credentials = JSON.parse(content);
 
-const APP_PORT = 8000;
+const APP_PORT = 3000;
 const PLAID_CLIENT_ID = credentials.client_id;
 const PLAID_SECRET = credentials.sandbox_secret;
 const PLAID_PUBLIC_KEY = credentials.public_key;
 const PLAID_ENV = 'sandbox';
-
-// const PLAID_PRODUCTS = 'auth,transactions,balance,identity';
-// const PLAID_COUNTRY_CODES = 'US';
 
 let PUBLIC_TOKEN = '';
 let ACCESS_TOKEN = '';

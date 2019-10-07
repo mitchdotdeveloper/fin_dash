@@ -34,7 +34,7 @@ module.exports = {
   },
   devServer: {
     host: 'localhost',
-    port: 8080,
+    port: 3001,
     contentBase: srcPath,
     watchContentBase: true,
     stats: 'minimal'
