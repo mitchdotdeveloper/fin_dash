@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from './newLink';
+import Link from './Link';
 import Dash from './Dash';
 
 class App extends React.Component {
