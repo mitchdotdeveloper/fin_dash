@@ -17,8 +17,8 @@ class Link extends React.Component {
       headers: { 'Content-Type' : 'application/json' },
       body: JSON.stringify({public_token:public_token})
     })
-    .then(res => res.ok ? res.json() : Promise.reject(`Error: Returned with ${res.status}`))
-    .then(data => data.err ? Promise.reject(`Error: ${data.error_message}`) : this.getItems())
+    .then(res => res.ok ? res.json() : Promise.reject(new Error(`Error: Returned with ${res.status}`)))
+    .then(data => data.err ? Promise.reject(new Error(`Error: ${data.error_message}`)) : this.getItems())
     .catch(err => console.error(err));
   }
 
@@ -27,16 +27,16 @@ class Link extends React.Component {
       method: 'POST',
       headers: { 'Content-Type' : 'application/json' }
     })
-    .then(res => res.ok ? res.json() : Promise.reject(`Error: Returned with ${res.status}`))
+    .then(res => res.ok ? res.json() : Promise.reject(new Error(`Error: Returned with ${res.status}`)))
     .then(data => {
       if ( data.err ) {
-        Promise.reject(`Error ${data.error_message}`);
+        Promise.reject(new Error(`Error ${data.error_message}`));
       } else {
         this.props.update_item(data);
         this.props.unmountSelf();
       }
     })
-    .catch(err => console.log(err));
+    .catch(err => console.error(err));
   }
 
   handleExit(err, metadata) {

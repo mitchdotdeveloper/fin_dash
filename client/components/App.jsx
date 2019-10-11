@@ -6,14 +6,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      linkSucceeded: false
+      linkSucceeded: false,
+      item: null
     }
-    this.item = null;
   }
 
   updateItem(item) {
-    // this.setState( {item: JSON.parse(item).item} );
-    this.item = item.item;
+    this.setState({ item : item });
   }
 
   unmountLink() {
@@ -25,19 +24,12 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.state.linkSucceeded && this.item) {
-      return (
-        <>
-          <Dash available_products={this.item.available_products} />
-        </>
-      );
-    } else {
-      return (
-        <>
-          <Link public_key={this.props.public_key} unmountSelf={this.unmountLink.bind(this)} update_item={this.updateItem.bind(this)} />
-        </>
-      );
-    }
+    return this.state.linkSucceeded && this.state.item
+      ?  <Dash available_products={this.state.item.available_products} />
+      :  <Link
+            public_key={this.props.public_key}
+            unmountSelf={this.unmountLink.bind(this)}
+            update_item={this.updateItem.bind(this)} />
   }
 }
 export default App;

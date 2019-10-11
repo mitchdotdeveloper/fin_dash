@@ -8,7 +8,7 @@ import App from './components/App';
     method: 'POST',
     headers: { 'Content-Type': 'application/json' }
   })
-    .then(res => res.ok ? res.json() : Promise.reject(`Error: Returned with ${res.status}`))
+    .then(res => res.ok ? res.json() : Promise.reject(new Error(`Error: Returned with ${res.status}`)))
     .then(data => ReactDOM.render(<App public_key={data.public_key} />, document.getElementById('root')))
     .catch(err => console.error(err));
 })();
