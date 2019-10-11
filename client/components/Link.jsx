@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import PlaidLink from 'react-plaid-link';
+import React from 'react';
+import PlaidLink from './PlaidLink';
 import './styles/link.css';
 
-class Link extends Component {
+class Link extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,20 +49,16 @@ class Link extends Component {
 
   render() {
     return (
-      <div className='linkContent'>
-        <h1 className="linkContent__header">Link your account</h1>
-        <PlaidLink
-          className="link-btn"
-          publicKey={this.props.public_key}
-          product={this.products}
-          env='sandbox'
-          clientName='Fin Dash'
-          onSuccess={this.sendToken.bind(this)}
-          onExit={this.handleExit.bind(this)}>
-          Link
-        </PlaidLink>
-      </div>
-    )
+      <PlaidLink
+        className='link-btn'
+        public_key={this.props.public_key}
+        product={this.products}
+        env='sandbox'
+        clientName='Fin Dash'
+        onSuccess={this.sendToken.bind(this)}
+        onExit={this.handleExit.bind(this)}>
+      </PlaidLink>
+    );
   }
 }
 
