@@ -28,10 +28,37 @@ export default class Link extends React.Component {
     });
   }
 
+  sendToken(public_token, metadata) {
+    fetch('/get_access_token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ public_token: public_token })
+    })
+      .then(res => res.ok ? res.json() : Promise.reject(new Error(`Error: Returned with ${res.status}`)))
+      .then(data => data.err ? Promise.reject(new Error(`Error: ${data.error_message}`)) : this.getItems())
+      .catch(err => console.error(err));
+  }
+
+  getItems() {
+    fetch('/item/get', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(res => res.ok ? res.json() : Promise.reject(new Error(`Error: Returned with ${res.status}`)))
+      .then(data => {
+        if (data.err) {
+          Promise.reject(new Error(`Error ${data.error_message}`));
+        } else {
+          this.props.update_item(data);
+          this.props.unmountSelf();
+        }
+      })
+      .catch(err => console.error(err));
+  }
+
   render() {
     return (
       <div className="linkContent">
-        <h1 className="linkContent__header">Link your account</h1>
         <button className="link-btn" onClick={() => this.state.handler.open()}>Link</button>
       </div>
     );

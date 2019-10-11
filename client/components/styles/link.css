@@ -1,19 +1,10 @@
-/* background-color: rgb(0, 255, 145); */
-.linkContent {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: space-evenly;
-  height: 100vh;
-}
-
-.linkContent__header {
-  font-size: 8em;
-}
-
 .link-btn {
-  font-size: 4em;
-  box-shadow: 0 4px rgb(241, 241, 241);
+  font-size: 3.5em;
+  margin: 2px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(244, 244, 244);
+  box-shadow: 0 4px rgb(213, 213, 213);
 }
 
 .link-btn:active {
