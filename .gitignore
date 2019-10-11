@@ -3,3 +3,4 @@ node_modules
 not_keys.json
 !*.secret
 mysql_credentials.js
+server/public/main.js

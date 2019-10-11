@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './styles/dash.css';
 import { Accounts, Account } from './Account';
 
-class Dash extends Component {
+class Dash extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +21,7 @@ class Dash extends Component {
       method: 'POST',
       headers: { 'Content-Type' : 'application/json' }
     })
-    .then(res => res.ok ? res.json() : Promise.reject(`Error: Returned with ${res.status}`))
+    .then(res => res.ok ? res.json() : Promise.reject(new Error(`Error: Returned with ${res.status}`)))
     .then(data => this.setState({ accounts: data.accounts }))
     .catch(err => console.error(err));
   }
@@ -31,7 +31,7 @@ class Dash extends Component {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
     })
-    .then(res => res.ok ? res.json() : Promise.reject(`Error: Returned with ${res.status}`))
+    .then(res => res.ok ? res.json() : Promise.reject(new Error(`Error: Returned with ${res.status}`)))
     .then(data => this.setState({ balance: data.accounts[0].balances.current }))
     .catch(err => console.error(err));
   }
@@ -41,7 +41,7 @@ class Dash extends Component {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
     })
-    .then(res => res.ok ? res.json() : Promise.reject(`Error: Returned with ${res.status}`))
+    .then(res => res.ok ? res.json() : Promise.reject(new Error(`Error: Returned with ${res.status}`)))
     .then(data => this.setState({ transactions: data.data.transactions }))
     .catch(err => console.error(err));
   }

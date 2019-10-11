@@ -9,7 +9,7 @@ export default class PlaidLink extends React.Component {
   }
 
   setLink() {
-    return window.Plaid.create({
+    return Plaid.create({
       clientName: this.props.clientName,
       env: this.props.env,
       key: this.props.public_key,
