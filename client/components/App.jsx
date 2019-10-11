@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from './Link';
+import Link from './newLink';
 import Dash from './Dash';
 
 class App extends React.Component {
@@ -15,6 +15,10 @@ class App extends React.Component {
     this.setState({ item : item });
   }
 
+  linkSuccess() {
+
+  }
+
   unmountLink() {
     var root = document.getElementById('root');
     while (root.nextSibling) {
@@ -28,8 +32,8 @@ class App extends React.Component {
       ?  <Dash available_products={this.state.item.available_products} />
       :  <Link
             public_key={this.props.public_key}
-            unmountSelf={this.unmountLink.bind(this)}
-            update_item={this.updateItem.bind(this)} />
+            products={['auth', 'transactions']}
+            success={this.linkSuccess.bind(this)}/>
   }
 }
 export default App;

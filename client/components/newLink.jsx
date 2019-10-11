@@ -5,8 +5,7 @@ export default class Link extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      handler: this.initializePlaidLink(),
-      products: ['auth', 'transactions']
+      handler: this.initializePlaidLink()
     };
   }
 
@@ -23,7 +22,7 @@ export default class Link extends React.Component {
       clientName: 'Fin Dash',
       env: 'sandbox',
       key: this.props.public_key,
-      product: this.state.products,
+      product: this.props.products,
       onSuccess: this.linkSuccess.bind(this),
       onExit: this.linkExit.bind(this)
     });
