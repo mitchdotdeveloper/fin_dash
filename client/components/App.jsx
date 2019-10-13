@@ -11,12 +11,18 @@ class App extends React.Component {
     }
   }
 
-  updateItem(item) {
-    this.setState({ item : item });
+  linkSuccess(item) {
+    this.setState({
+      linkSucceeded: true,
+      item: item
+    });
   }
 
-  linkSuccess() {
-
+  linkExit(item) {
+    this.setState({
+      linkSucceeded: false,
+      item: item
+    });
   }
 
   unmountLink() {
@@ -33,7 +39,8 @@ class App extends React.Component {
       :  <Link
             public_key={this.props.public_key}
             products={['auth', 'transactions']}
-            success={this.linkSuccess.bind(this)}/>
+            success={this.linkSuccess.bind(this)}
+            exit={this.linkExit.bind(this)}/>
   }
 }
 export default App;
