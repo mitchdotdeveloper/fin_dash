@@ -57,7 +57,12 @@ export default class Link extends React.Component {
 
   render() {
     return (
-      <button className="link-btn" onClick={() => this.state.handler.open()}>Link</button>
+      <button
+        className="link-btn"
+        onClick={e => {
+          e.preventDefault();
+          this.state.handler.open();
+        }}>Link</button>
     );
   }
 
