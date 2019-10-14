@@ -11,8 +11,18 @@ class App extends React.Component {
     }
   }
 
-  updateItem(item) {
-    this.setState({ item : item });
+  linkSuccess(item) {
+    this.setState({
+      linkSucceeded: true,
+      item: item
+    });
+  }
+
+  linkExit(item) {
+    this.setState({
+      linkSucceeded: false,
+      item: item
+    });
   }
 
   unmountLink() {
@@ -28,8 +38,9 @@ class App extends React.Component {
       ?  <Dash available_products={this.state.item.available_products} />
       :  <Link
             public_key={this.props.public_key}
-            unmountSelf={this.unmountLink.bind(this)}
-            update_item={this.updateItem.bind(this)} />
+            products={['auth', 'transactions']}
+            success={this.linkSuccess.bind(this)}
+            exit={this.linkExit.bind(this)}/>
   }
 }
 export default App;
