@@ -10,7 +10,10 @@ export const Accounts = ({ accounts, accountClicked }) => {
             {Object.keys(accounts).map(
               account => {
                 return (
-                  <div className="dashboard__card" key={account} onClick={() => accountClicked(accounts[account])}>
+                  <div className="dashboard__card" key={account} onClick={e => {
+                    e.preventDefault();
+                    accountClicked(accounts[account]);
+                  }}>
                     <div className="card__header--accountName">
                       {accounts[account].name || accounts[account].official_name}
                     </div>
@@ -53,7 +56,10 @@ export const Account = ({ account, accountClosed }) => {
             </div>
           </div>
         </div>
-        <div className="modal__background--overlay" onClick={() => accountClosed(null)}></div>
+        <div className="modal__background--overlay" onClick={e => {
+          e.preventDefault();
+          accountClosed(null);
+        }}></div>
       </>
     );
   } else {
