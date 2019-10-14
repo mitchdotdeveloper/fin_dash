@@ -25,14 +25,6 @@ class App extends React.Component {
     });
   }
 
-  unmountLink() {
-    var root = document.getElementById('root');
-    while (root.nextSibling) {
-      root.nextSibling.remove();
-    }
-    this.setState({ linkSucceeded: true });
-  }
-
   render() {
     return this.state.linkSucceeded && this.state.item
       ?  <Dash available_products={this.state.item.available_products} />
