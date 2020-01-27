@@ -1,0 +1,66 @@
+.profile-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  font-size: 4rem;
+  text-align: center;
+}
+
+.card {
+  width: 100%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  transition: all 0.2s linear;
+}
+
+.name {
+  height: 250px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  line-height: 250px;
+  background: #36D1DC;
+  background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);
+  background: linear-gradient(to right, #5B86E5, #36D1DC);
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 25px 40px -6px rgba(0, 0, 0, 0.705);
+}
+
+.preferences {
+  height: 100px;
+  line-height: 100px;
+  width: 85%;
+  margin: 0 auto;
+  list-style: none;
+  padding: 0;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 10px 40px -6px rgba(0, 0, 0, 0.705);
+  position: relative;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.preference-item {
+  display: inline;
+  margin: 0 2rem;
+}
+
+.preference-item:hover {
+  background-color: var(--nav-itm-bg-color);
+}
+
+.edit-profile {
+  font-size: 4rem;
+  border: none;
+  width: 40%;
+  margin: 0 auto;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 10px 40px -6px rgba(0, 0, 0, 0.705);
+  outline: none;
+}
+
+.card:hover {
+  padding: 20px 0;
+}

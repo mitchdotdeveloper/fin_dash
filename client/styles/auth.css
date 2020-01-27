@@ -1,0 +1,96 @@
+.auth-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: rgb(208, 208, 208);
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 25px 15px -12px black;
+  width: 40rem;
+}
+
+.input-box {
+  background: rgba(0, 0, 0, 0.112);
+  border: none;
+  outline: none;
+  margin-bottom: 4px;
+  font-size: 3rem;
+  border-radius: 10px;
+  color: rgb(99, 99, 99);
+}
+
+.input-wrapper::before {
+  content: attr(name);
+  display: block;
+  font-size: 2rem;
+  color: rgb(99, 99, 99);
+}
+
+.currencies {
+  list-style: none;
+  padding: 0;
+  max-width: 297px;
+  background-color: rgba(0, 0, 0, 0.112);
+  border-radius: 10px;
+  overflow-x: auto;
+  margin: 0;
+}
+
+.currency {
+  display: inline;
+  margin: 0 1rem;
+  font-size: 3rem;
+  color: rgb(99, 99, 99);
+}
+
+.currency-selected {
+  color: black;
+}
+
+.login-btn, .login-link {
+  border: none;
+  outline: none;
+  color: rgb(99, 99, 99);
+}
+
+.login-btn {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 50px;
+  background: none;
+  box-shadow: 0 15px 12px -8px black;
+  font-size: 3rem;
+}
+
+.login-btn::before {
+  content: attr(message);
+  display: block;
+  font-size: 2rem;
+  color: red;
+}
+
+.login-btn:active {
+  transform: scale(.9);
+  box-shadow: none;
+}
+
+.login-links {
+  margin-top: 20px;
+}
+
+.login-link {
+  background: none;
+  text-decoration: none;
+  font-size: 2rem;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,23 @@
+.nav-bar {
+  list-style: none;
+  display: flex;
+  top: 0;
+  position: sticky;
+  justify-content: center;
+  padding: 0;
+  width: 100vw;
+}
+
+.nav-item {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  color: grey;
+  text-align: center;
+  transition: background 0.2s linear;
+  width: 20rem;
+}
+
+.nav-item:hover {
+  color: white;
+  background-color: var(--nav-itm-bg-color);
+}
