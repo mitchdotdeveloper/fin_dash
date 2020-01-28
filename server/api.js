@@ -1,4 +1,5 @@
 const plaid = require('plaid');
+// const db = require('./db').get;
 const express = require('express');
 const router = express.Router();
 
@@ -23,5 +24,17 @@ router.post('/get_access_token', (request, response) => {
     response.json({ 'error': null });
   });
 });
+
+// // Send back account information
+// router.post('/accounts/get', (request, response) => {
+//   plaidClient.getAccounts(ACCESS_TOKEN, (err, result) => {
+//     if (err != null) {
+//       console.log('Could not get accounts!\n' + err);
+//       return response.json({ err: err });
+//     }
+
+//     return response.json({ accounts: result.accounts });
+//   });
+// });
 
 module.exports = router;

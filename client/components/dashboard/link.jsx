@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import '../styles/link.css';
 
 const Link = ({ public_key }) => {
   const [link, setLink] = useState(null);

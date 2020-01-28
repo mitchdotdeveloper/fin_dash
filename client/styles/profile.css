@@ -28,29 +28,6 @@
   box-shadow: 0 25px 40px -6px rgba(0, 0, 0, 0.705);
 }
 
-.preferences {
-  height: 100px;
-  line-height: 100px;
-  width: 85%;
-  margin: 0 auto;
-  list-style: none;
-  padding: 0;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 10px 40px -6px rgba(0, 0, 0, 0.705);
-  position: relative;
-  overflow-x: auto;
-  white-space: nowrap;
-}
-
-.preference-item {
-  display: inline;
-  margin: 0 2rem;
-}
-
-.preference-item:hover {
-  background-color: var(--nav-itm-bg-color);
-}
-
 .edit-profile {
   font-size: 4rem;
   border: none;

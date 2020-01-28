@@ -15,10 +15,11 @@ const Nav = ({ itemClicked, items }) => {
 };
 
 const Dash = ({ user, logout }) => {
-  const [view, setView] = useState('profile');
+  // const [view, setView] = useState('profile');
+  const [view, setView] = useState('accounts');
   const [linkPK, setLinkPK] = useState('');
 
-  const navItems = ['profile', 'data', 'logout'];
+  const navItems = ['profile', 'accounts', 'logout'];
 
   useEffect(() => {
     if ( linkPK === '' ) {
@@ -36,7 +37,7 @@ const Dash = ({ user, logout }) => {
       <Nav itemClicked={itemClicked} items={navItems} />
       {view === 'profile'
         ?  <Profile user={user} />
-        :  view === 'data'
+        :  view === 'accounts'
            ?  <Link public_key={linkPK} />
            :  logout()}
     </>
