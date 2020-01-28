@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/auth.css';
 
-const Auth = ({ authenticatedUser }) => {
+const Auth = ({ login }) => {
   const [credentials, setCredentials] = useState({
     signIn: { email: '', password: '' },
     signUp: { email: '', first_name: '', last_name: '', password: '' }
@@ -33,7 +32,7 @@ const Auth = ({ authenticatedUser }) => {
         body: JSON.stringify(credentials[view])
       })
         .then(res => res.json())
-        .then(data => data.authenticated ? authenticatedUser(data.user) : setAuthenticationMessage(data.message))
+        .then(data => data.authenticated ? login(data.user) : setAuthenticationMessage(data.message))
         .catch(err => console.error(err));
     }
   };

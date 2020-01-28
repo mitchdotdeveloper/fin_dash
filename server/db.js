@@ -1,4 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
+const Id = require('mongodb').ObjectID;
 let mongo;
 
 const connect = callback => {
@@ -20,5 +21,6 @@ const close = () => mongo.close();
 module.exports = {
   connect,
   get,
-  close
+  close,
+  Id
 };

@@ -33,6 +33,7 @@ router.post('/sign-in', async (req, res) => {
 
 router.post('/sign-up', async (req, res) => {
   let user = req.body;
+  user.accounts = [];
   if ( await userExists(user.email) ) {
     res.send(JSON.stringify({authenticated: false, message: 'an account with this email is already in user'})).end();
   } else {

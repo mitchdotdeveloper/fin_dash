@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Link = ({ public_key }) => {
+const Link = ({ email, public_key }) => {
   const [link, setLink] = useState(null);
   const style = {
     'fontSize': '3.5rem',
@@ -20,7 +20,7 @@ const Link = ({ public_key }) => {
     return fetch('http://localhost:5001/api/get_access_token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ public_token })
+      body: JSON.stringify({ public_token, email })
     })
       .then(res => res.json())
       .then(data => data)
@@ -29,8 +29,17 @@ const Link = ({ public_key }) => {
 
   const onSuccess = (public_token, metadata) => {
     sendToken(public_token)
-      .then(res => console.log(res))
-      .catch(err => console.error(err));
+      // .then(res => console.log(res))
+      // .then(res => {
+      //   console.log(res.token);
+      //   return fetch('http://localhost:5001/api/accounts/get', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ access_token: res.access_token })
+      // })
+      //   .then(data => data.json())
+      //   .then(d => console.log(d));})
+      // .catch(err => console.error(err));
   };
 
 
@@ -59,69 +68,3 @@ const Link = ({ public_key }) => {
 };
 
 export default Link;
-
-// export default class Link extends React.Component {
-//   constructor (props) {
-//     super(props);
-//     this.state = {
-//       plaidLink: null
-//     }
-//   }
-
-//   open (e) {
-//     e.preventDefault();
-//     this.state.plaidLink.open();
-//   }
-
-  // onSuccess (public_token, metadata) {
-  //   this.sendToken(public_token, metadata)
-  //     .then(res => this.getItems())
-  //     .then(item => this.props.sendItem(item))
-  //     .catch(err => console.error(err))
-  // }
-
-  // onExit (err, metadata) {
-
-  // }
-
-  // sendToken (public_token, metadata) {
-  //   return fetch('http://localhost:5001/get_access_token', {
-  //       method: 'POST',
-  //       headers: {'Content-Type': 'application/json'},
-  //       body: JSON.stringify({ public_token: public_token })
-  //     })
-  //     .then(res => res.ok ? res.json() : Promise.reject(new Error(`Returned with ${res.status}`)))
-  //     .then(data => data.error ? Promise.reject(new Error(data.error_message)) : data)
-  //     .catch(err => console.error(err))
-  // }
-
-  // getItems () {
-  //   return fetch('http://localhost:5001/item/get', {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' }
-  //   })
-  //     .then(res => res.ok ? res.json() : Promise.reject(new Error(`Returned with ${res.status}`)))
-  //     .then(data => data.error ? Promise.reject(new Error(data.error_message)) : data)
-  //     .catch(err => console.error(err));
-  // }
-
-//   componentDidMount () {
-//     let plaidLink = Plaid.create({
-//       clientName: 'Fin Dash',
-//       env: 'sandbox',
-//       key: this.props.public_key,
-//       product: this.props.products,
-//       onSuccess: this.onSuccess.bind(this),
-//       onExit: this.onExit.bind(this)
-//     });
-//     this.setState({plaidLink});
-//   }
-
-//   render () {
-//     return (
-//       <button className="link-btn" onClick={this.open.bind(this)}>
-//         Link
-//       </button>
-//     );
-//   }
-// }
