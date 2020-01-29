@@ -16,32 +16,16 @@ const Link = ({ email, public_key }) => {
     link.open();
   };
 
-  const sendToken = public_token => {
-    return fetch('http://localhost:5001/api/get_access_token', {
+  const onSuccess = (public_token, metadata) => {
+    fetch('http://localhost:5001/api/get_access_token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ public_token, email })
     })
       .then(res => res.json())
-      .then(data => data)
+      .then(_ => link.close())
       .catch(err => console.error(err));
-  }
-
-  const onSuccess = (public_token, metadata) => {
-    sendToken(public_token)
-      // .then(res => console.log(res))
-      // .then(res => {
-      //   console.log(res.token);
-      //   return fetch('http://localhost:5001/api/accounts/get', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ access_token: res.access_token })
-      // })
-      //   .then(data => data.json())
-      //   .then(d => console.log(d));})
-      // .catch(err => console.error(err));
   };
-
 
   const onExit = (err, metadata) => {
     console.log('Exited');

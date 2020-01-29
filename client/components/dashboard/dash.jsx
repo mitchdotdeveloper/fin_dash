@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Profile from './profile';
-import Accounts from './accounts';
+import Institutions from './institutions';
 import '../../styles/dash.css';
 
 const Nav = ({ itemClicked, items }) => {
@@ -18,7 +18,7 @@ const Dash = ({ user, logout }) => {
   const [view, setView] = useState('profile');
   const [linkPK, setLinkPK] = useState('');
 
-  const navItems = ['profile', 'accounts', 'logout'];
+  const navItems = ['profile', 'institutions', 'logout'];
 
   useEffect(() => {
     if ( linkPK === '' ) {
@@ -36,8 +36,8 @@ const Dash = ({ user, logout }) => {
       <Nav itemClicked={itemClicked} items={navItems} />
       {view === 'profile'
         ?  <Profile user={user} />
-        :  view === 'accounts'
-           ?  <Accounts public_key={linkPK} user={user} />
+        :  view === 'institutions'
+           ?  <Institutions public_key={linkPK} user={user} />
            :  logout()}
     </>
   );
