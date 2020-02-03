@@ -17,7 +17,7 @@ const Link = ({ email, public_key }) => {
   };
 
   const onSuccess = (public_token, metadata) => {
-    fetch('http://localhost:5001/api/get_access_token', {
+    fetch('http://localhost:5001/api/plaid/get_access_token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ public_token, email })

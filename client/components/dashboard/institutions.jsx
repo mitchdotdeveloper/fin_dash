@@ -3,10 +3,10 @@ import Link from './link';
 
 const Account = ({ itemClicked, account, color }) => {
   return (
-    <div style={{ backgroundColor: color }} className="account">
+    <li style={{ backgroundColor: color }} className="account">
       <h1 className="account-name">{account.name}</h1>
       <p className="account-mask">{account.mask}</p>
-    </div>
+    </li>
   );
 };
 
@@ -21,12 +21,8 @@ const Institutions = ({ public_key, user }) => {
   const [institutions, setInstitutions] = useState([]);
 
   useEffect(() => {
-    if ( user.accounts.length && !institutions.length ) {
-      fetch('http://localhost:5001/api/accounts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ accounts: user.accounts })
-      })
+    if (user.accounts.length && !institutions.length) {
+      fetch(`http://localhost:5001/api/fin/accounts?${user.accounts.reduce((acc, cur, idx) => acc + '&' + idx + '=' + cur,'')}`)
         .then(res => res.json())
         .then(data => setInstitutions(data.accounts))
         .catch(err => console.error(err));

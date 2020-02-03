@@ -22,7 +22,7 @@ const Dash = ({ user, logout }) => {
 
   useEffect(() => {
     if ( linkPK === '' ) {
-      fetch('http://localhost:5001/api')
+      fetch('http://localhost:5001/api/plaid/public_key')
         .then(res => res.json())
         .then(data => setLinkPK(data.public_key))
         .catch(err => console.error(err));
