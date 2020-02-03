@@ -1,7 +1,7 @@
 const crypto = require('crypto');
-const db = require('./db').get;
+const db = require('./dbConfig').get;
 const express = require('express');
-const router = express.Router();
+const authRoute = express.Router();
 
 const userExists = email => {
   return db('fin_dash').collection('users').countDocuments({ email }, { limit: 1 })
@@ -25,14 +25,15 @@ const authenticate = async (email, password) => {
   return response;
 };
 
-router.post('/sign-in', async (req, res) => {
+authRoute.post('/sign-in', async (req, res) => {
   let { email, password } = req.body;
   let response = await authenticate(email, password);
   res.send(JSON.stringify(response)).end();
 });
 
-router.post('/sign-up', async (req, res) => {
+authRoute.post('/sign-up', async (req, res) => {
   let user = req.body;
+  user.accounts = [];
   if ( await userExists(user.email) ) {
     res.send(JSON.stringify({authenticated: false, message: 'an account with this email is already in user'})).end();
   } else {
@@ -49,4 +50,4 @@ router.post('/sign-up', async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = authRoute;
