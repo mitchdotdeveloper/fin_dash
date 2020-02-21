@@ -2,11 +2,12 @@
 .nav-bar {
   list-style: none;
   display: flex;
-  top: 1rem;
+  top: 2rem;
   position: sticky;
   justify-content: center;
   padding: 0;
   width: 100vw;
+  margin-bottom: 4rem;
 }
 
 .nav-item {
@@ -92,27 +93,52 @@
   margin: 5px;
 }
 
-/* dashboard account list view */
-.account-container {
-  list-style: none;
-  padding: 0;
-  margin: 5px 0;
-  width: 20vw;
-  margin-left: 40vw;
+/* dashboard transactions table view */
+.transactions-container {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 70vw;
+  margin-left: 15vw;
+  justify-content: center;
 }
 
-.account {
-  color: white;
-  border-radius: 10px;
+.transactions-table {
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.account-name {
-  font-size: 3rem;
+.transactions-table-headers {
+  background-color: rgb(205, 205, 205);
+}
+
+.transactions-table-header {
+  font-size: 2rem;
+}
+
+.transactions-table-row {
+  background-color: rgb(245, 245, 245);
+}
+
+.transactions-table-row:nth-child(even) {
+  background-color: rgb(205, 205, 205);
+}
+
+.transactions-table-cell {
+  font-size: 1.8rem;
   text-align: center;
 }
 
-.account-mask {
-  font-size: 2.5rem;
-  text-align: right;
-  margin-right: 10px;
+.transactions-table-header:first-child, .transactions-table-cell:first-child {
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.transactions-table-header:last-child, .transactions-table-cell:last-child {
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.transactions-table-header, .transactions-table-cell {
+  padding: 1rem 0;
 }

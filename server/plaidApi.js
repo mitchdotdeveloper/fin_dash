@@ -38,4 +38,22 @@ plaidRoute.post('/get_access_token', async (req, res) => {
     .catch(err => console.error(err));
 });
 
+plaidRoute.post('/transactions', (req, res) => {
+  const currDate = new Date();
+  let dd = currDate.getDate();
+  let mm = currDate.getMonth();
+  let yyyy = currDate.getFullYear();
+
+  if (mm < 10) mm = '0' + mm;
+  if (dd < 10) dd = '0' + dd;
+
+  let start_date = (yyyy - 1) + '-' + mm + '-' + dd;
+  let end_date = yyyy + '-' + mm + '-' + dd;
+
+  plaidClient.getTransactions(req.body.access_token, start_date, end_date, { count: 20 })
+    .then(data => res.status(200).json(data).end())
+    .catch(err => console.error(err));
+
+});
+
 module.exports = plaidRoute;
