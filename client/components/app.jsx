@@ -4,7 +4,7 @@ import Dash from './dashboard/dash';
 import '../styles/app.css';
 
 const Header = ({ main }) => {
-  return main ? <i style={{ fontSize: "10rem" }} className="fas fa-credit-card"></i> : <i style={{ fontSize: "5rem", position: "absolute" }} className="fas fa-credit-card"></i>;
+  return null;//main ? <i style={{ fontSize: "10rem" }} className="fas fa-credit-card"></i> : <i style={{ fontSize: "5rem", position: "absolute" }} className="fas fa-credit-card"></i>;
 };
 
 const App = () => {
