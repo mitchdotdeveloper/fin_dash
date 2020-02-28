@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Link = ({ email, public_key }) => {
+const Link = ({ email, setInstitutions, public_key }) => {
   const [link, setLink] = useState(null);
   const style = {
     'fontSize': '3.5rem',
@@ -17,13 +17,17 @@ const Link = ({ email, public_key }) => {
   };
 
   const onSuccess = (public_token, metadata) => {
-    fetch('http://localhost:5001/api/plaid/get_access_token', {
+    fetch('http://localhost:5001/api/plaid/add-institution', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ public_token, email })
     })
       .then(res => res.json())
-      .then(_ => link.close())
+      .then(data => {
+        console.log("from link", data.accounts)
+        setInstitutions(data.accounts);
+        link.close();
+      })
       .catch(err => console.error(err));
   };
 

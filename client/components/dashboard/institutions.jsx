@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Link from './link';
 
 const Institutions = ({ public_key, user }) => {
-  const [view, setView] = useState({ name: 'institution', data: null });
+  const [view, setView] = useState({ name: 'institutions', data: null });
   const [institutions, setInstitutions] = useState([]);
   const [transactions, setTransactions] = useState([]);
 
@@ -10,10 +10,13 @@ const Institutions = ({ public_key, user }) => {
     if (user.accounts.length && !institutions.length) {
       fetch(`http://localhost:5001/api/fin/accounts?${user.accounts.reduce((acc, cur, idx) => acc + '&' + idx + '=' + cur,'')}`)
         .then(res => res.json())
-        .then(data => setInstitutions(data.accounts))
+        .then(data => {
+          console.log("from institutions", data.accounts);
+          setInstitutions(data.accounts);
+        })
         .catch(err => console.error(err));
     }
-  }, [user])
+  }, [user, setInstitutions])
 
   useEffect(() => {
     if ( view.name === 'transactions' ) {
@@ -31,7 +34,7 @@ const Institutions = ({ public_key, user }) => {
   const institutionClicked = ({ target: { id } }) => setView({ name: 'transactions', data: institutions[id] });
 
   const render = () => {
-    if (view.name === 'institution') {
+    if (view.name === 'institutions') {
       return (
         <>
           {institutions
@@ -39,7 +42,13 @@ const Institutions = ({ public_key, user }) => {
               {institutions.map((inst, idx) => <div key={idx} style={{ backgroundColor: inst.color }} id={idx} onClick={institutionClicked} className="institution">{inst.name}</div>)}
               </div>
             : <h1>no accounts linked</h1>}
-          <Link email={user.email} setInstitutions={setInstitutions} public_key={public_key} />
+          <Link email={user.email} setInstitutions={acc => {
+            let insts = [...institutions];
+            console.log('insts before', insts)
+            insts.push(acc);
+            console.log('insts after', insts)
+            setInstitutions(insts);
+            }} public_key={public_key} />
         </>
       )
     }

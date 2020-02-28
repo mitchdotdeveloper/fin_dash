@@ -17,7 +17,7 @@ plaidRoute.get('/public_key', (req, res) => {
     : res.status(500).json('no public key provided').end();
 });
 
-plaidRoute.post('/get_access_token', async (req, res) => {
+plaidRoute.post('/add-institution', async (req, res) => {
   let token = { access_token: '', item_id: '' };
   let accounts = await plaidClient.exchangePublicToken(req.body.public_token)
     .then(tokenResponse => {
@@ -25,7 +25,6 @@ plaidRoute.post('/get_access_token', async (req, res) => {
       token.item_id = tokenResponse.item_id;
       return plaidClient.getAuth(tokenResponse.access_token);
     })
-    .then(_ => _)
     .catch(err => console.error(err));
 
   let institution = await plaidClient.getInstitutionById(accounts.item.institution_id, { include_optional_metadata: true })
@@ -34,7 +33,7 @@ plaidRoute.post('/get_access_token', async (req, res) => {
 
   db('fin_dash').collection('accounts').insertOne({ ...accounts, ...institution, ...token })
     .then(res => db('fin_dash').collection('users').findOneAndUpdate({ email: req.body.email }, { $push: { "accounts": new id(res.insertedId) } }))
-    .then(_ => res.status(200).send().end())
+    .then(_ => res.status(200).send({ accounts: {'_id': res.insertedId, ...accounts, ...institution, ...token} }).end())
     .catch(err => console.error(err));
 });
 

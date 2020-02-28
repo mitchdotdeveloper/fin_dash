@@ -10,7 +10,10 @@ finRoute.get('/accounts', async (req, res) => {
   }
   accounts = await db('fin_dash').collection('accounts').find({ "_id": { "$in": accounts } });
   accounts.toArray()
-    .then(data => res.status(200).json({ accounts: data }).end())
+    .then(data => {
+      console.log(data);
+      res.status(200).json({ accounts: data }).end();
+    })
     .catch(err => console.error(err));
 });
 
