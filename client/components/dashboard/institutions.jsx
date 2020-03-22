@@ -6,6 +6,8 @@ const Institutions = ({ public_key, user }) => {
   const [institutions, setInstitutions] = useState([]);
   const [transactions, setTransactions] = useState([]);
 
+  console.log('institutions:',institutions)
+
   useEffect(() => {
     if (user.accounts.length && !institutions.length) {
       fetch(`http://localhost:5001/api/fin/accounts?${user.accounts.reduce((acc, cur, idx) => acc + '&' + idx + '=' + cur,'')}`)
@@ -39,7 +41,7 @@ const Institutions = ({ public_key, user }) => {
               {institutions.map((inst, idx) => <div key={idx} style={{ backgroundColor: inst.color }} id={idx} onClick={institutionClicked} className="institution">{inst.name}</div>)}
               </div>
             : <h1>no accounts linked</h1>}
-          <Link email={user.email} setInstitutions={setInstitutions} public_key={public_key} />
+          <Link email={user.email} institutions={institutions} setInstitutions={setInstitutions} public_key={public_key} />
         </>
       )
     }

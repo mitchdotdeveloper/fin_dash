@@ -25,7 +25,6 @@ plaidRoute.post('/get_access_token', async (req, res) => {
       token.item_id = tokenResponse.item_id;
       return plaidClient.getAuth(tokenResponse.access_token);
     })
-    .then(_ => _)
     .catch(err => console.error(err));
 
   let institution = await plaidClient.getInstitutionById(accounts.item.institution_id, { include_optional_metadata: true })
@@ -33,8 +32,13 @@ plaidRoute.post('/get_access_token', async (req, res) => {
     .catch(err => console.error(err));
 
   db('fin_dash').collection('accounts').insertOne({ ...accounts, ...institution, ...token })
-    .then(res => db('fin_dash').collection('users').findOneAndUpdate({ email: req.body.email }, { $push: { "accounts": new id(res.insertedId) } }))
-    .then(_ => res.status(200).send().end())
+    // .then(async (res) => {
+    //  let { value } = await db('fin_dash').collection('users').findOneAndUpdate({ email: req.body.email }, { $push: { "accounts": new id(res.insertedId) } });
+    //  console.log( value.accounts );
+    //  return value;
+    // })
+    .then(res => db('fin_dash').collection('users').findOneAndUpdate({ email: req.body.email }, { $push: { 'accounts': new id(res.insertedId) } }))
+    .then(_ => res.status(200).send({ newAcc: {'_id': res.insertedId, ...accounts, ...institution, ...token} }).end())
     .catch(err => console.error(err));
 });
 

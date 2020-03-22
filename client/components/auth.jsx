@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { login, hydrateUser } from '../redux/actions';
 
-const Auth = ({ login }) => {
+const Auth = () => {
   const [credentials, setCredentials] = useState({
     signIn: { email: '', password: '' },
     signUp: { email: '', first_name: '', last_name: '', password: '' }
   });
   const [authenticationMessage, setAuthenticationMessage] = useState('');
   const [view, setView] = useState('signIn');
+
+  const dispatch = useDispatch();
 
   const fieldsEmpty = obj => {
     for (let k in obj) {
@@ -32,7 +36,15 @@ const Auth = ({ login }) => {
         body: JSON.stringify(credentials[view])
       })
         .then(res => res.json())
-        .then(data => data.authenticated ? login(data.user) : setAuthenticationMessage(data.message))
+        .then(data => {
+          if ( data.authenticated ) {
+            console.log( data );
+            dispatch(login({ 'jwt': 'howdy' }));
+            dispatch(hydrateUser(data.user));
+          } else {
+            setAuthenticationMessage(data.message);
+          }
+        })
         .catch(err => console.error(err));
     }
   };

@@ -27,7 +27,9 @@
     "mysql": "^2.17.1",
     "plaid": "^4.3.0",
     "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "react-dom": "^16.10.2",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
