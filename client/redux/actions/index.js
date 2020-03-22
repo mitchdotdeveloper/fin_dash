@@ -35,10 +35,16 @@ export const updateToken = payload => {
  *  'accounts': Array
  * }
  */
-export const authenticate = payload => {
+export const hydrateUser = payload => {
   return {
-    type: 'AUTHENTICATE',
+    type: 'HYDRATE_USER',
     payload
+  };
+};
+
+export const emptyUser = () => {
+  return {
+    type: 'EMPTY_USER'
   };
 };
 

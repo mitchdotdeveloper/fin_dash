@@ -7,7 +7,7 @@ import './styles/app.css';
 
 const App = () => {
   const auth = useSelector(state => state.authReducer);
-
+  console.log( auth )
   return (
     <>
       {auth.authenticated ? <Dash /> : <Auth />}

@@ -7,12 +7,19 @@ const initialState = {
 
 const userReducer = (state=initialState, action) => {
   switch( action.type ) {
-    case 'AUTHENTICATE':
+    case 'HYDRATE_USER':
       return Object.assign({}, state, {
         'first_name': action.payload.first_name,
         'last_name': action.payload.last_name,
         'email': action.payload.email,
         'accounts': action.payload.accounts
+      });
+    case 'EMPTY_USER':
+      return Object.assign({}, state, {
+        'first_name': '',
+        'last_name': '',
+        'email': '',
+        'accounts': []
       });
     case 'ADD_ACCOUNT':
       return Object.assign({}, state, {
